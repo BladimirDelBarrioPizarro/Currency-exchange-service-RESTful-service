@@ -1,15 +1,29 @@
 package com.bladi.currencyexchangeservice.model;
 
+
+
+
+
+
+
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+@Entity
 public class ExchangeValue implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private long id;
+    @Column(name="currency_from")
     private String from;
+    @Column(name="currency_to")
     private String to;
-    private BigDecimal conversionMultiple;
 
+    private BigDecimal conversionMultiple;
+    private int port;
     public ExchangeValue(long id, String from, String to, BigDecimal conversionMultiple) {
         super();
         this.id = id;
@@ -20,7 +34,17 @@ public class ExchangeValue implements Serializable {
     }
 
 
+    public void setPort(int port) {
+        this.port = port;
+    }
+
+    public int getPort() {
+        return port;
+
+    }
+
     public long getId() {
+
         return id;
     }
 
