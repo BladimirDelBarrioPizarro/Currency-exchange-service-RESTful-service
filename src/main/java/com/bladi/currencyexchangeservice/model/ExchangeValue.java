@@ -24,6 +24,9 @@ public class ExchangeValue implements Serializable {
 
     private BigDecimal conversionMultiple;
     private int port;
+
+    public ExchangeValue(){}
+
     public ExchangeValue(long id, String from, String to, BigDecimal conversionMultiple) {
         super();
         this.id = id;

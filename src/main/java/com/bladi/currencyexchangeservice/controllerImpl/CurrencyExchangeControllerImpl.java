@@ -2,12 +2,12 @@ package com.bladi.currencyexchangeservice.controllerImpl;
 
 import com.bladi.currencyexchangeservice.controller.CurrencyExchangeController;
 import com.bladi.currencyexchangeservice.model.ExchangeValue;
+import com.bladi.currencyexchangeservice.repository.ExchangeValueRepository;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+
 
 import java.math.BigDecimal;
 
@@ -17,11 +17,15 @@ public class CurrencyExchangeControllerImpl implements CurrencyExchangeControlle
 
     @Autowired
     private Environment environment;
+    @Autowired
+    private ExchangeValueRepository repository;
 
     @Override
     public ExchangeValue retrieveExchangeValue(String from, String to) {
-        logger.info(" -- GET //currency-exchange/from/"+from+"/to/"+to);
-        ExchangeValue ev = new ExchangeValue(100l,from,to,BigDecimal.valueOf(65));
+        logger.info(" -- GET /currency-exchange/from/"+from+"/to/"+to);
+
+        ExchangeValue ev = repository.findByFromAndTo(from,to);
+
         ev.setPort(Integer.parseInt(this.environment.getProperty("local.server.port")));
         return ev;
     }

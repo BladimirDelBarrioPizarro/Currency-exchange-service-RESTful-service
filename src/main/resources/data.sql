@@ -1,9 +1,4 @@
-/*create table exchange_value(
-    id NUMBER ,
-    currency_from VARCHAR (30),
-    currency_to VARCHAR (30),
-    conversion_multiple NUMBER
-);*/
+
 
 INSERT INTO exchange_value(id,currency_from,currency_to,conversion_multiple,port)
 VALUES(10001,'USD','INR',65,0);
