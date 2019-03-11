@@ -9,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 
 
-import java.math.BigDecimal;
-
 public class CurrencyExchangeControllerImpl implements CurrencyExchangeController {
 
     private static final Log logger = LogFactory.getLog(CurrencyExchangeControllerImpl.class);
@@ -23,9 +21,7 @@ public class CurrencyExchangeControllerImpl implements CurrencyExchangeControlle
     @Override
     public ExchangeValue retrieveExchangeValue(String from, String to) {
         logger.info(" -- GET /currency-exchange/from/"+from+"/to/"+to);
-
         ExchangeValue ev = repository.findByFromAndTo(from,to);
-
         ev.setPort(Integer.parseInt(this.environment.getProperty("local.server.port")));
         return ev;
     }
